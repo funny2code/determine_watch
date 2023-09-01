@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Rating</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff;
+            /* White background color */
+            /* color: #1e2e3a; */
+            color: #0b96fe;
+            /* Dark blue text color */
+        }
+
+        nav {
+            background-color: #fff;
+            /* White background color for the navigation bar */
+            color: #1e2e3a;
+            /* Dark blue font color for navigation items */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Nice box shadow */
+        }
+
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            margin-bottom: 200px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background-color: #f0f0f0;
+            /* Light gray background color for the container */
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #282C34;
+            /* Slightly darker background color */
+            color: #FFF;
+            /* WHITE text color */
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        .btn-submit {
+            background-color: gold;
+            color: #000;
+        }
+
+        /* Example: Center the navigation text */
+        ul#nav-mobile li a,
+        .sidenav li a {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+
+    <!-- Your content goes here -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize the sidenav
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+            // Initialize other Materialize components if needed
+        });
+    </script>
+    <div class="container">
+        <h1>Making Decision</h1><br>
+        <img src="https://hairspring.com/wp-content/uploads/2023/08/Hero-641-2048x1277.jpg" alt="Wrist Watch">
+        <form action="/chooser" method="POST">
+            <div class="input-field">
+                <input type="text" id="watchName" required>
+                <label for="watchName">What is the name of the watch</label>
+            </div>
+            <hr>
+            <p>Select a letter grade for desire</p>
+            <select id="desire_grade">
+                <option value="0"></option>
+                <option value="100">A+</option>
+                <option value="95">A</option>
+                <option value="90">B+</option>
+                <option value="85">B</option>
+                <option value="80">C+</option>
+                <option value="C">C</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="D-">D-</option>
+                <option value="F">F</option>
+            </select>
+            <p>Select a letter grade for use case</p>
+            <select id="usecase_grade">
+                <option value="0"></option>
+                <option value="100">A+</option>
+                <option value="95">A</option>
+                <option value="90">A-</option>
+                <option value="85">B+</option>
+                <option value="80">B</option>
+                <option value="75">C+</option>
+                <option value="70">C</option>
+                <option value="65">D+</option>
+                <option value="60">D</option>
+                <option value="50">D-</option>
+                <option value="30">F</option>
+            </select>
+            <p>Select a letter grade for quality</p>
+            <select id="quality_grade">
+                <option value="0"></option>
+                <option value="100">A+</option>
+                <option value="95">A</option>
+                <option value="90">A-</option>
+                <option value="85">B+</option>
+                <option value="80">B</option>
+                <option value="75">C+</option>
+                <option value="70">C</option>
+                <option value="65">D+</option>
+                <option value="60">D</option>
+                <option value="50">D-</option>
+                <option value="30">F</option>
+            </select>
+            <p>Select a letter grade for collection</p>
+            <select id="collec_grade">
+                <option value="0"></option>
+                <option value="100">A+</option>
+                <option value="95">A</option>
+                <option value="90">A-</option>
+                <option value="85">B+</option>
+                <option value="80">B</option>
+                <option value="75">C+</option>
+                <option value="70">C</option>
+                <option value="65">D+</option>
+                <option value="60">D</option>
+                <option value="50">D-</option>
+                <option value="30">F</option>
+            </select>
+            <p>Select a letter grade for investment value</p>
+            <select id="invest_grade">
+                <option value="0"></option>
+                <option value="100">A+</option>
+                <option value="95">A</option>
+                <option value="90">A-</option>
+                <option value="85">B+</option>
+                <option value="80">B</option>
+                <option value="75">C+</option>
+                <option value="70">C</option>
+                <option value="65">D+</option>
+                <option value="60">D</option>
+                <option value="50">D-</option>
+                <option value="30">F</option>
+            </select>
+            <!-- Add similar select fields for other criteria -->
+            <button class="btn waves-effect waves-light btn-submit" id="submit_btn" type="button">Submit</button>
+        </form>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script>
+        $("#submit_btn").click(function() {
+            var raw_desire = $("#desire_grade").val(),
+                raw_use = $("#usecase_grade").val(),
+                raw_quality = $("#quality_grade").val(),
+                raw_collection = $("#collec_grade").val(),
+                raw_value = $("#invest_grade").val(),
+                watchname = $("#watchName").val();
+            if (raw_desire == 0 || raw_use == 0 || raw_quality == 0 ||
+                raw_value == 0 || raw_collection == 0 || watchname == "") 
+            {
+                alert ("please complete the form");
+            }
+            
+            $.ajax({
+                url: '/chooser',
+                method: 'POST',
+                data: {
+                    watchname: watchname,
+                    raw_desire: raw_desire,
+                    raw_use: raw_use,
+                    raw_quality: raw_quality,
+                    raw_collection: raw_collection,
+                    raw_value: raw_value
+                },
+                success: function (res) {
+                    alert(res.response);
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
