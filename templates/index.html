@@ -79,6 +79,61 @@
         .sidenav li a {
             text-align: center;
         }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            display: none;	
+            width: 300px;
+            height: 300px;
+            background-color: #fff;
+            box-sizing: border-box;
+            z-index: 9999;
+        }
+        .modal > p {
+            padding: 15px;
+            margin: 0;
+        }
+        .modal-header {
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #dddddd;
+            box-sizing: border-box;
+            height: 50px;
+        }
+        .modal-header h3 {
+            margin: 0;
+            box-sizing: border-box;
+            padding-left: 15px;
+            line-height: 50px;
+            color: #4d4d4d;
+            font-size: 16px;
+            display: inline-block;
+        }
+        .modal-header label {
+            box-sizing: border-box;
+            border-left: 1px solid #dddddd;
+            float: right;
+            line-height: 50px;
+            padding: 0 15px 0 15px;
+            cursor: pointer;
+        }
+        .modal-header label:hover img {
+            opacity: 0.6;
+        }
+        .modal-background {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            z-index: 9998;
+        }
     </style>
 </head>
 
@@ -202,8 +257,25 @@
             <button class="btn waves-effect waves-light btn-submit" id="submit_btn" type="button">Submit</button>
         </form>
     </div>
+    <label for="modal" class="modal-background"></label>
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modal_title">Advice!</h3>
+            <label for="modal">
+                <img id="close_modal" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="">
+            </label>
+        </div>
+        <p id="modal_content">Content for the modal</p>
+    </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script>
+        $('#close_modal').click(function() {
+            $("#modal_title").text("No title");
+            $("#modal_content").text("");
+            $(".modal").hide();
+            $(".modal-background").hide();
+        });
+
         $("#submit_btn").click(function() {
             var raw_desire = $("#desire_grade").val(),
                 raw_use = $("#usecase_grade").val(),
@@ -214,7 +286,11 @@
             if (raw_desire == 0 || raw_use == 0 || raw_quality == 0 ||
                 raw_value == 0 || raw_collection == 0 || watchname == "") 
             {
-                alert ("please complete the form");
+                $("#modal_title").text("Warnning!");
+                $("#modal_content").text("Please complete the correct form!");
+                $(".modal").show();
+                $(".modal-background").show();
+                return;
             }
             
             $.ajax({
@@ -229,7 +305,10 @@
                     raw_value: raw_value
                 },
                 success: function (res) {
-                    alert(res.response);
+                    $("#modal_title").text("Advice!");
+                    $("#modal_content").text(res.response);
+                    $(".modal").show();
+                    $(".modal-background").show();
                 }
             })
         });
