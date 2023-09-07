@@ -26,13 +26,17 @@ def choose():
     total_adjusted = adjusted_desire+adjusted_use+adjusted_quality+adjusted_collection+adjusted_value
 
     res = ""
+    flag = ""
     if total_adjusted >= threshold:
         res = f"You should buy {watchname}"
+        flag = "blue"
     else:
         res = f"Do not buy {watchname}"
+        flag = "red"
     
     data = {
-        'response': res
+        'response': res,
+        'flag': flag
     }
     return jsonify(data)
 

@@ -90,16 +90,22 @@
             display: none;	
             width: 300px;
             height: 300px;
-            background-color: #fff;
+            background-color: #ffff87;
             box-sizing: border-box;
             z-index: 9999;
         }
         .modal > p {
             padding: 15px;
             margin: 0;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .red_mark {
+            color: red;
         }
         .modal-header {
-            background-color: #f9f9f9;
+            background-color: #e55e20;
             border-bottom: 1px solid #dddddd;
             box-sizing: border-box;
             height: 50px;
@@ -109,9 +115,10 @@
             box-sizing: border-box;
             padding-left: 15px;
             line-height: 50px;
-            color: #4d4d4d;
-            font-size: 16px;
+            color: #caff00;
+            font-size: 20px;
             display: inline-block;
+            font-weight: bold;
         }
         .modal-header label {
             box-sizing: border-box;
@@ -265,7 +272,7 @@
                 <img id="close_modal" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="">
             </label>
         </div>
-        <p id="modal_content">Content for the modal</p>
+        <p class="" id="modal_content">Content for the modal</p>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script>
@@ -307,6 +314,11 @@
                 success: function (res) {
                     $("#modal_title").text("Advice!");
                     $("#modal_content").text(res.response);
+                    if (res.flag == "red") {
+                        $("#modal_content").addClass("red_mark");
+                    } else {
+                        $("#modal_content").removeClass("red_mark");
+                    }
                     $(".modal").show();
                     $(".modal-background").show();
                 }
